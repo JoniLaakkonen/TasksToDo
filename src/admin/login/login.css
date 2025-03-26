@@ -1,0 +1,19 @@
+.login-form {
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+    height: 70vh;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+}
+.login-form > form {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.login-form > form > button {
+    width: 100%;
+}

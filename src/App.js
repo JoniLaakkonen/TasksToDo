@@ -1,24 +1,38 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import Dashboard from './admin/dashboard/Dashboard';
+import Login from './admin/login/Login';
 import './App.css';
+import { Homepage } from './pages';
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    return localStorage.getItem("auth") === "true"; // ✅ Load auth state from localStorage
+  });
+
+  useEffect(() => {
+      localStorage.setItem("auth", isAuthenticated); // ✅ Save auth state to localStorage
+  }, [isAuthenticated]);
+  
+  const ProtectedRoute = ({ children }) => {
+    return isAuthenticated ? children : <Navigate to="/admin" />;
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Routes>
+        <Route path="/admin" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+        <Route path='/*' element={<Homepage/>}/>
+
+      </Routes>
+    </>
   );
 }
 

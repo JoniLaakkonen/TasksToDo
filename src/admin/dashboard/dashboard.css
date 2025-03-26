@@ -1,0 +1,32 @@
+.dashboard {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+.dashboard > .page-content {
+    min-width: 50%;
+    padding-bottom: 3rem;
+}
+.dashboard .header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    width: 100%;
+}
+.dashboard .item-container {
+    padding: 1rem;
+    display: flex;
+    flex-flow: column;
+}
+.dashboard h2 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 36px;
+    color: var(--color-primary);
+}
+.dashboard h3 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 28px;
+    color: var(--color-primary);
+    margin: 1rem 0;
+}
